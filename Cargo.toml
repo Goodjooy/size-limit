@@ -3,7 +3,15 @@ name = "size-limit"
 version = "0.1.0"
 edition = "2021"
 readme = "README.md"
+authors = ["FrozenString<frozenstringstable@gmail.com>"]
+description = "range limit checker"
+homepage = "https://github.com/Goodjooy/size-limit"
+documentation = "https://docs.rs/size-limit"
+license = "MIT"
 
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
