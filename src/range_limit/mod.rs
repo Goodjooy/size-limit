@@ -11,12 +11,12 @@ pub enum SizeStatus {
     TooLarge(usize),
     TooSmall(usize),
     FIxSize(usize),
-    Costom(Box<dyn std::error::Error>),
+    Custom(Box<dyn std::error::Error>),
 }
 
 impl SizeStatus {
-    pub fn costom<E: std::error::Error + 'static>(err: E) -> Self {
+    pub fn custom<E: std::error::Error + 'static>(err: E) -> Self {
         let b = Box::new(err) as Box<dyn std::error::Error>;
-        Self::Costom(b)
+        Self::Custom(b)
     }
 }

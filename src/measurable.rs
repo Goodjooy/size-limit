@@ -1,7 +1,8 @@
-
 pub trait Measurable {
     fn size(&self) -> usize;
 }
+
+use std::collections::HashMap;
 
 impl Measurable for String {
     fn size(&self) -> usize {
@@ -9,9 +10,15 @@ impl Measurable for String {
     }
 }
 
-impl<T, const L: usize> Measurable for [T; L] {
+impl Measurable for str {
     fn size(&self) -> usize {
-        L
+        self.len()
+    }
+}
+
+impl<T> Measurable for [T] {
+    fn size(&self) -> usize {
+        self.len()
     }
 }
 
@@ -21,10 +28,8 @@ impl<T> Measurable for Vec<T> {
     }
 }
 
-
-impl<'s> Measurable for &'s str {
+impl<K, V> Measurable for HashMap<K, V> {
     fn size(&self) -> usize {
         self.len()
     }
 }
-

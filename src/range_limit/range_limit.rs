@@ -13,13 +13,13 @@ impl<T, Rb: Default> RangeBoundLimit<T, Rb> {
     fn handle_arms(status: SizeStatus, size: usize, value: T) -> Result<Self, error::Error> {
         match status {
             SizeStatus::Ok => Ok(Self(value, Rb::default())),
-            SizeStatus::TooLarge(require) => Err(error::Error::TooLarget { require, get: size }),
+            SizeStatus::TooLarge(require) => Err(error::Error::TooLarge { require, get: size }),
             SizeStatus::TooSmall(require) => Err(error::Error::TooSmall { require, get: size }),
             SizeStatus::FIxSize(s) => Err(error::Error::FixSize {
                 require: s,
                 get: size,
             }),
-            SizeStatus::Costom(err) => Err(error::Error::Coutom(err)),
+            SizeStatus::Custom(err) => Err(error::Error::Custom(err)),
         }
     }
 }
@@ -29,7 +29,7 @@ impl<T: Debug + Measurable, Rb: Debug> Debug for RangeBoundLimit<T, Rb> {
         f.debug_struct("RangeLimit")
             .field("data", &self.0)
             .field("bound", &self.1)
-            .field("exact lenght", &self.0.size())
+            .field("exact length", &self.0.size())
             .finish()
     }
 }
